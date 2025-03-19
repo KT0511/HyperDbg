@@ -28,6 +28,7 @@ extern DEBUGGER_SYNCRONIZATION_EVENTS_STATE
 VOID
 UdHandleUserDebuggerPausing(PDEBUGGEE_UD_PAUSED_PACKET PausePacket)
 {
+    printf("[ %s\n ]", __FUNCTION__);
     //
     // Set the current active debugging process (thread)
     //

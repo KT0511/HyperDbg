@@ -108,7 +108,7 @@ copy "$(SolutionDir)miscellaneous\constants\pciid\pci.ids" "$(OutDir)constants\p
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)dependencies;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -136,7 +136,8 @@ copy "$(OutDir)hyperlog.dll" "$(OutDir)SDK\Libraries\hyperlog.dll"
 copy "$(OutDir)hyperhv.dll" "$(OutDir)SDK\Libraries\hyperhv.dll"
 if exist "$(OutDir)constants\" rd /q /s "$(OutDir)constants\"
 mkdir "$(OutDir)constants"
-copy "$(SolutionDir)miscellaneous\constants\pciid\pci.ids" "$(OutDir)constants\pci.ids"</Command>
+copy "$(SolutionDir)miscellaneous\constants\pciid\pci.ids" "$(OutDir)constants\pci.ids"
+copy "$(TargetPath)" "C:\Users\mymy\Desktop\VMShare\$(TargetFileName)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -1386,6 +1386,12 @@ RegisterActionToEvent(PDEBUGGER_GENERAL_EVENT_DETAIL Event,
                       PDEBUGGER_GENERAL_ACTION       ActionScript,
                       UINT32                         ActionScriptLength)
 {
+    printf("[ %s ]\n", __FUNCTION__);
+    if (Event)
+        printf("Event->EventType : %lX\n", (DWORD)Event->EventType);
+    if (ActionBreakToDebugger)
+        printf("ActionBreakToDebugger->ActionType : %lX\n", (DWORD)ActionBreakToDebugger->ActionType);
+
     BOOL                              Status;
     ULONG                             ReturnedLength;
     DEBUGGER_EVENT_AND_ACTION_RESULT  ReturnedBuffer = {0};
