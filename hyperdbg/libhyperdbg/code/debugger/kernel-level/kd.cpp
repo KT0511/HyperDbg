@@ -1453,6 +1453,7 @@ BOOLEAN
 KdReceivePacketFromDebuggee(CHAR *   BufferToSave,
                             UINT32 * LengthReceived)
 {
+    printf("[ %s ]\n", __FUNCTION__);
     char   ReadData    = NULL; /* temperory Character */
     DWORD  NoBytesRead = 0;    /* Bytes read by ReadFile() */
     UINT32 Loop        = 0;

@@ -22,6 +22,8 @@
 BOOLEAN
 RevRequestService(REVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST * RevRequest)
 {
+    printf("[ %s ]\n", __FUNCTION__);
+
     BOOLEAN Status;
     ULONG   ReturnedLength;
 

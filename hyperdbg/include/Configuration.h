@@ -66,7 +66,8 @@
 /**
  * @brief Activates the user-mode debugger
  */
-#define ActivateUserModeDebugger FALSE
+// COALA
+#define ActivateUserModeDebugger TRUE
 
 /**
  * @brief Enable or disable the instant event mechanism

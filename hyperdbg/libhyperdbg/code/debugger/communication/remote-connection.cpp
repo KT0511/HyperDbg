@@ -215,6 +215,8 @@ RemoteConnectionThreadListeningToDebuggee(LPVOID lpParam)
 
     while (g_IsConnectedToRemoteDebuggee)
     {
+        printf("[ %s ]\n", __FUNCTION__);
+
         //
         // Receive message
         //

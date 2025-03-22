@@ -24,7 +24,68 @@
 #include "SDK/HyperDbgSdk.h"
 #include "SDK/imports/user/HyperDbgLibImports.h"
 
+#include <TlHelp32.h>
+#include <Psapi.h>
+
 using namespace std;
+
+UINT64
+GetMBA(HANDLE hProcess, char * MName)
+{
+    HMODULE    Modules[1024] {};
+    DWORD      cbNeeded = 0, i = 0;
+    MODULEINFO ModuleInfo {};
+    char       ModuleName[MAX_PATH] {};
+    PVOID      Result = 0x0;
+
+    if (hProcess != 0)
+    {
+        __try
+        {
+            EnumProcessModules(hProcess, &Modules[0], 1024 * sizeof(HMODULE), &cbNeeded);
+        }
+        __except (EXCEPTION_EXECUTE_HANDLER)
+        {
+        }
+        for (int i = 0; i < (cbNeeded / sizeof(HMODULE)); i++)
+        {
+            GetModuleBaseNameA(hProcess, Modules[i], ModuleName, sizeof(ModuleName));
+            if (strcmp(ModuleName, MName) == 0)
+            {
+                GetModuleInformation(hProcess, Modules[i], &ModuleInfo, sizeof(ModuleInfo));
+                Result = ModuleInfo.lpBaseOfDll;
+                return (UINT64)Result;
+            }
+        }
+    }
+    return 0x0;
+}
+
+DWORD
+GetPID(const WCHAR * PName)
+{
+    HANDLE          hSnapShot = NULL;
+    PROCESSENTRY32W PEntry {};
+    bool            bCont  = false;
+    DWORD           Result = 0;
+
+    hSnapShot     = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    PEntry.dwSize = sizeof(PEntry);
+    bCont         = Process32FirstW(hSnapShot, &PEntry);
+    while (bCont)
+    {
+        if (wcsstr((WCHAR *)PEntry.szExeFile, PName) != NULL)
+        {
+            Result = PEntry.th32ProcessID;
+            break;
+        }
+        PEntry.dwSize = sizeof(PEntry);
+        bCont         = (Result == 0) && (Process32NextW(hSnapShot, &PEntry));
+    }
+    CloseHandle(hSnapShot);
+
+    return Result;
+}
 
 /**
  * @brief CLI main function
@@ -66,6 +127,31 @@ main(int argc, char * argv[])
             printf("err, invalid command line options passed to the HyperDbg!\n");
             return 1;
         }
+    }
+
+    DWORD pid = GetPID(L"Victim.exe");
+    printf("pid : %lX\n", pid);
+
+    HANDLE process_handle = OpenProcess(PROCESS_ALL_ACCESS, TRUE, pid);
+    printf("process_handle : %p\n", process_handle);
+
+    UINT64 base = GetMBA(process_handle, (char *)"Victim.exe");
+    printf("base : %llX\n", base);
+
+    if (pid != 0)
+    {
+        hyperdbg_u_run_command((CHAR *)".connect local");
+        hyperdbg_u_run_command((CHAR *)"load vmm");
+
+        char str[512] {};
+
+        sprintf(str, "attach pid %lX", pid);
+        hyperdbg_u_run_command((CHAR *)str);
+
+        // sprintf(str, "bp %llX pid %lX", base + 0x10C0, pid);
+        //sprintf(str, "!epthook %llX pid %lX imm yes script { printf(\"A\n\"); }", base + 0x10C0, pid);
+        sprintf(str, "!epthook %llX pid %lX", base + 0x10C0, pid);
+        hyperdbg_u_run_command((CHAR *)str);
     }
 
     while (!exit_from_debugger)

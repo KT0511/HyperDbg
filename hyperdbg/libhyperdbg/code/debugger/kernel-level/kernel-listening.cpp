@@ -43,6 +43,8 @@ extern UINT64                           g_KernelBaseAddress;
 BOOLEAN
 ListeningSerialPortInDebugger()
 {
+    printf("[ %s ]\n", __FUNCTION__);
+
     PDEBUGGER_PREPARE_DEBUGGEE                   InitPacket;
     PDEBUGGER_REMOTE_PACKET                      TheActualPacket;
     PDEBUGGEE_KD_PAUSED_PACKET                   PausePacket;
@@ -1372,6 +1374,7 @@ StartAgain:
 BOOLEAN
 ListeningSerialPortInDebuggee()
 {
+    printf("[ %s ]\n", __FUNCTION__);
 StartAgain:
 
     BOOL Status; /* Status */
@@ -1545,6 +1548,8 @@ StartAgain:
 DWORD WINAPI
 ListeningSerialPauseDebuggerThread(PVOID Param)
 {
+    printf("[ %s ]\n", __FUNCTION__);
+
     //
     // Create a listening thead in debugger
     //
@@ -1562,6 +1567,7 @@ ListeningSerialPauseDebuggerThread(PVOID Param)
 DWORD WINAPI
 ListeningSerialPauseDebuggeeThread(PVOID Param)
 {
+    printf("[ %s ]\n", __FUNCTION__);
     //
     // Create a listening thead in debuggee
     //

@@ -77,7 +77,6 @@ DrvDispatchIoControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
         switch (IrpStack->Parameters.DeviceIoControl.IoControlCode)
         {
         case IOCTL_REGISTER_EVENT:
-
             //
             // First validate the parameters.
             //

@@ -344,6 +344,7 @@ ForwardingPerformEventForwarding(PDEBUGGER_GENERAL_EVENT_DETAIL EventDetail,
                                  CHAR *                         Message,
                                  UINT32                         MessageLength)
 {
+    printf("[ %s ]\n", __FUNCTION__);
     BOOLEAN     Result   = FALSE;
     PLIST_ENTRY TempList = 0;
 
@@ -381,9 +382,11 @@ ForwardingPerformEventForwarding(PDEBUGGER_GENERAL_EVENT_DETAIL EventDetail,
                 // Now, we should check whether the output is opened or
                 // not closed
                 //
+                printf("[ %s ] CurrentOutputSourceDetails->State : %u\n", __FUNCTION__, CurrentOutputSourceDetails->State);
                 if (CurrentOutputSourceDetails->State ==
                     EVENT_FORWARDING_STATE_OPENED)
                 {
+                    printf("[ %s ] CurrentOutputSourceDetails->Type : %u\n", __FUNCTION__, CurrentOutputSourceDetails->Type);
                     switch (CurrentOutputSourceDetails->Type)
                     {
                     case EVENT_FORWARDING_NAMEDPIPE:
@@ -440,6 +443,13 @@ ForwardingCheckAndPerformEventForwarding(UINT32 OperationCode,
                                          CHAR * Message,
                                          UINT32 MessageLength)
 {
+    printf("[ %s ]\n", __FUNCTION__);
+    if (Message)
+    {
+        printf("Message : %s\n", Message);
+        printf("MessageLength : %u\n", MessageLength);
+    }
+
     PLIST_ENTRY TempList;
     BOOLEAN     OutputSourceFound = FALSE;
 

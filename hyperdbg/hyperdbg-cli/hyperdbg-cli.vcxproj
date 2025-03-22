@@ -104,7 +104,7 @@ copy "$(SolutionDir)miscellaneous\constants\pciid\pci.ids" "$(OutDir)constants\p
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)dependencies;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -137,7 +137,9 @@ copy "$(OutDir)hyperhv.dll" "$(OutDir)SDK\Libraries\hyperhv.dll"
 if exist "$(OutDir)constants\" rd /q /s "$(OutDir)constants\"
 mkdir "$(OutDir)constants"
 copy "$(SolutionDir)miscellaneous\constants\pciid\pci.ids" "$(OutDir)constants\pci.ids"
-copy "$(TargetPath)" "C:\Users\mymy\Desktop\VMShare\$(TargetFileName)"</Command>
+
+copy "$(TargetPath)" "C:\Users\mymy\Desktop\VMShare\$(TargetFileName)"
+copy "$(TargetDir)$(TargetName).pdb" "C:\Users\mymy\Desktop\VMShare\$(TargetName).pdb"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

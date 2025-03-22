@@ -231,6 +231,7 @@ ReadIrpBasedBuffer()
     {
         while (TRUE)
         {
+            printf("[ %s ] g_IsVmxOffProcessStart : %s \n", __FUNCTION__, g_IsVmxOffProcessStart ? "TRUE" : "FALSE");
             if (!g_IsVmxOffProcessStart)
             {
                 //
@@ -252,6 +253,8 @@ ReadIrpBasedBuffer()
                     NULL                       // synchronous call
                 );
 
+                printf("[ %s ] Status : %s \n", __FUNCTION__, Status ? "TRUE" : "FALSE");
+
                 if (!Status)
                 {
                     //
@@ -271,6 +274,8 @@ ReadIrpBasedBuffer()
                 //
                 OperationCode = 0;
                 memcpy(&OperationCode, OutputBuffer, sizeof(UINT32));
+
+                printf("[ %s ] OperationCode : %lX\n", __FUNCTION__, OperationCode);
 
                 /*
         ShowMessages("Returned Length : 0x%x \n", ReturnedLength);
@@ -416,7 +421,7 @@ ReadIrpBasedBuffer()
                     break;
 
                 default:
-
+                    printf("[ %s ] case default, g_OutputSourcesInitialized : %s\n", __FUNCTION__, g_OutputSourcesInitialized ? "TRUE" : "FALSE");
                     //
                     // Check if there are available output sources
                     //
@@ -433,6 +438,7 @@ ReadIrpBasedBuffer()
                             continue;
                         }
 
+                        printf("[ %s ] Just show message. \n", __FUNCTION__);
                         ShowMessages("%s", OutputBuffer + sizeof(UINT32));
                     }
 
@@ -483,6 +489,7 @@ ReadIrpBasedBuffer()
 DWORD WINAPI
 IrpBasedBufferThread(void * data)
 {
+    printf("[ %s ]\n", __FUNCTION__);
     //
     // Do stuff.  This will be the first function called on the new
     // thread. When this function returns, the thread goes away.  See
@@ -661,6 +668,8 @@ HyperDbgUninstallVmmDriver()
 INT
 HyperDbgCreateHandleFromVmmModule()
 {
+    printf("[ %s ]\n", __FUNCTION__);
+
     DWORD ErrorNum;
     DWORD ThreadId;
 

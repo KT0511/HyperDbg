@@ -378,7 +378,9 @@ IdtEmulationHandleExceptionAndNmi(_Inout_ VIRTUAL_MACHINE_STATE *   VCpu,
         break;
 
     case EXCEPTION_VECTOR_DEBUG_BREAKPOINT:
-
+        DbgPrint("EXCEPTION_VECTOR_DEBUG_BREAKPOINT\n");
+        // COALA
+        // 브레이크포인트 핸들러
         if (!DebuggingCallbackHandleDebugBreakpointException(VCpu->CoreId))
         {
             //

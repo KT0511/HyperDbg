@@ -18,6 +18,7 @@
 #define DbgWaitForKernelResponse(KernelSyncObjectId)                       \
     do                                                                     \
     {                                                                      \
+        printf("[ DbgWaitForKernelResponse ]\n");                          \
         DEBUGGER_SYNCRONIZATION_EVENTS_STATE * SyncronizationObject =      \
             &g_KernelSyncronizationObjectsHandleTable[KernelSyncObjectId]; \
                                                                            \
@@ -29,6 +30,7 @@
 #define DbgWaitSetRequestData(KernelSyncObjectId, ReqData, ReqSize)        \
     do                                                                     \
     {                                                                      \
+        printf("[ DbgWaitSetRequestData ]\n");                             \
         DEBUGGER_SYNCRONIZATION_EVENTS_STATE * SyncronizationObject =      \
             &g_KernelSyncronizationObjectsHandleTable[KernelSyncObjectId]; \
                                                                            \
@@ -40,6 +42,7 @@
 #define DbgWaitGetRequestData(KernelSyncObjectId, ReqData, ReqSize)            \
     do                                                                         \
     {                                                                          \
+        printf("[ DbgWaitGetRequestData ]\n");                                 \
         DEBUGGER_SYNCRONIZATION_EVENTS_STATE * SyncronizationObject =          \
             &g_KernelSyncronizationObjectsHandleTable[KernelSyncObjectId];     \
                                                                                \
@@ -53,6 +56,7 @@
 #define DbgReceivedKernelResponse(KernelSyncObjectId)                      \
     do                                                                     \
     {                                                                      \
+        printf("[ DbgReceivedKernelResponse ]\n");                         \
         DEBUGGER_SYNCRONIZATION_EVENTS_STATE * SyncronizationObject =      \
             &g_KernelSyncronizationObjectsHandleTable[KernelSyncObjectId]; \
                                                                            \
