@@ -135,7 +135,8 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <PostBuildEvent>
-      <Command>copy "$(TargetPath)" "C:\Users\mymy\Desktop\VMShare\$(TargetFileName)"</Command>
+      <Command>copy "$(TargetPath)" "C:\Users\mymy\Desktop\VMShare\hd\$(TargetFileName)"
+copy "$(TargetDir)$(TargetName).pdb" "C:\Users\mymy\Desktop\VMShare\hd\$(TargetName).pdb"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

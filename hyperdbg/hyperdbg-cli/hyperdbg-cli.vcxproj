@@ -138,8 +138,8 @@ if exist "$(OutDir)constants\" rd /q /s "$(OutDir)constants\"
 mkdir "$(OutDir)constants"
 copy "$(SolutionDir)miscellaneous\constants\pciid\pci.ids" "$(OutDir)constants\pci.ids"
 
-copy "$(TargetPath)" "C:\Users\mymy\Desktop\VMShare\$(TargetFileName)"
-copy "$(TargetDir)$(TargetName).pdb" "C:\Users\mymy\Desktop\VMShare\$(TargetName).pdb"</Command>
+copy "$(TargetPath)" "C:\Users\mymy\Desktop\VMShare\hd\$(TargetFileName)"
+copy "$(TargetDir)$(TargetName).pdb" "C:\Users\mymy\Desktop\VMShare\hd\$(TargetName).pdb"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
