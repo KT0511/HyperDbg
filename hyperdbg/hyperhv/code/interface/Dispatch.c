@@ -820,6 +820,7 @@ DispatchEventException(VIRTUAL_MACHINE_STATE * VCpu)
     //
     if (EventTriggerResult != VMM_CALLBACK_TRIGGERING_EVENT_STATUS_SUCCESSFUL_IGNORE_EVENT)
     {
+        // 
         //
         // Handle exception (emulate or inject the event)
         //

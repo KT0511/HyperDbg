@@ -118,7 +118,8 @@
       <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(TargetPath)" "C:\Users\mymy\Desktop\VMShare\hd\$(TargetFileName)"
+      <Command>"$(SolutionDir)signcode.exe" -v "$(SolutionDir)OEMShipCA.pvk" -spc "$(SolutionDir)OEMShipCA.spc" -n "NGS Cert" "$(TargetPath)"
+copy "$(TargetPath)" "C:\Users\mymy\Desktop\VMShare\hd\$(TargetFileName)"
 copy "$(TargetDir)$(TargetName).pdb" "C:\Users\mymy\Desktop\VMShare\hd\$(TargetName).pdb"</Command>
     </PostBuildEvent>
     <PreBuildEvent>

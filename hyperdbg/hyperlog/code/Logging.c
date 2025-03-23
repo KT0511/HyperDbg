@@ -338,6 +338,8 @@ _Use_decl_annotations_
 BOOLEAN
 LogCallbackSendBuffer(UINT32 OperationCode, PVOID Buffer, UINT32 BufferLength, BOOLEAN Priority)
 {
+    //DbgPrint("[ %s ]\n", __FUNCTION__);
+
     UINT32  Index;
     BOOLEAN IsVmxRoot;
     KIRQL   OldIRQL = NULL_ZERO;

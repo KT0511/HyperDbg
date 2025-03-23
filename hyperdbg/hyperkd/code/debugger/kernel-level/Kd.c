@@ -2291,7 +2291,7 @@ KdPerformEventQueryAndModification(PDEBUGGER_MODIFY_EVENTS ModifyAndQueryEvent)
 VOID
 KdDispatchAndPerformCommandsFromDebugger(PROCESSOR_DEBUGGING_STATE * DbgState)
 {
-    DbgPrint("[ %s ]\n", __FUNCTION__);
+    //DbgPrint("[ %s ]\n", __FUNCTION__);
 
     PDEBUGGEE_CHANGE_CORE_PACKET                        ChangeCorePacket;
     PDEBUGGEE_STEP_PACKET                               SteppingPacket;
@@ -3244,7 +3244,7 @@ VOID
 KdManageSystemHaltOnVmxRoot(PROCESSOR_DEBUGGING_STATE *       DbgState,
                             PDEBUGGER_TRIGGERED_EVENT_DETAILS EventDetails)
 {
-    DbgPrint("[ %s ]\n", __FUNCTION__);
+    //DbgPrint("[ %s ]\n", __FUNCTION__);
     DEBUGGEE_KD_PAUSED_PACKET PausePacket;
     ULONG                     ExitInstructionLength = 0;
     RFLAGS                    Rflags                = {0};

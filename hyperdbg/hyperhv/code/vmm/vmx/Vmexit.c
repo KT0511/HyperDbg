@@ -202,6 +202,7 @@ VmxVmexitHandler(_Inout_ PGUEST_REGS GuestRegs)
     }
     case VMX_EXIT_REASON_EXCEPTION_OR_NMI:
     {
+        // COALA this
         //
         // Handle the EXCEPTION injection/emulation
         //

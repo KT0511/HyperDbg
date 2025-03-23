@@ -145,12 +145,11 @@ main(int argc, char * argv[])
 
         char str[512] {};
 
-        sprintf(str, "attach pid %lX", pid);
-        hyperdbg_u_run_command((CHAR *)str);
+        //sprintf(str, "attach pid %lX", pid); hyperdbg_u_run_command((CHAR *)str);
 
         // sprintf(str, "bp %llX pid %lX", base + 0x10C0, pid);
-        //sprintf(str, "!epthook %llX pid %lX imm yes script { printf(\"A\n\"); }", base + 0x10C0, pid);
-        sprintf(str, "!epthook %llX pid %lX", base + 0x10C0, pid);
+        sprintf(str, "!epthook %llX pid %lX imm yes script { printf(\" %%llx \\n\", @rdx); }", base + 0x10D0, pid);
+        //sprintf(str, "!epthook %llX pid %lX", base + 0x10C0, pid);
         hyperdbg_u_run_command((CHAR *)str);
     }
 

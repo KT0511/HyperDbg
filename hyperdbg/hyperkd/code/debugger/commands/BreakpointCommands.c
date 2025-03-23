@@ -237,6 +237,8 @@ Return:
 BOOLEAN
 BreakpointCheckAndHandleDebugBreakpoint(UINT32 CoreId)
 {
+    //DbgPrint("[ %s ]\n", __FUNCTION__);
+
     BOOLEAN                     TrapSetByDebugger;
     PROCESSOR_DEBUGGING_STATE * DbgState                  = &g_DbgState[CoreId];
     BOOLEAN                     HandledByDebuggerRoutines = TRUE;

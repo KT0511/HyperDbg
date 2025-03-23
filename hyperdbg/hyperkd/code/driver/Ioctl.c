@@ -76,6 +76,7 @@ DrvDispatchIoControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
 
         switch (IrpStack->Parameters.DeviceIoControl.IoControlCode)
         {
+            // COALA this
         case IOCTL_REGISTER_EVENT:
             //
             // First validate the parameters.
@@ -97,7 +98,7 @@ DrvDispatchIoControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
             switch (RegisterEventRequest->Type)
             {
             case IRP_BASED:
-
+                // COALA this
                 LogRegisterIrpBasedNotification((PVOID)Irp, &Status);
 
                 break;

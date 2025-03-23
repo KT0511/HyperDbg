@@ -1,0 +1,26 @@
+1. Vmexit.c
+
+BOOLEAN
+VmxVmexitHandler(_Inout_ PGUEST_REGS GuestRegs)
+
+2. Dispatch.c
+
+VOID
+DispatchEventException(VIRTUAL_MACHINE_STATE * VCpu)
+
+3. IdtEmulation
+
+VOID
+IdtEmulationHandleExceptionAndNmi(_Inout_ VIRTUAL_MACHINE_STATE *   VCpu,
+                                  _In_ VMEXIT_INTERRUPT_INFORMATION InterruptExit)
+
+4. Callback.c
+
+BOOLEAN
+DebuggingCallbackHandleDebugBreakpointException(UINT32 CoreId)
+
+5. BreakpointCommands.c
+
+BOOLEAN
+BreakpointCheckAndHandleDebugBreakpoint(UINT32 CoreId)
+
